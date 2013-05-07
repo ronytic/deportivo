@@ -1,0 +1,28 @@
+<?php
+include_once("../login/check.php");
+if(!empty($_POST)){
+	include_once("../class/club.php");
+	$club=new club;
+	$cod=$_POST['Cod'];
+	$nombre=$_POST['nombre'];
+	$cantidadjugadores=$_POST['cantidadjugadores'];
+	$categoria=$_POST['categoria'];
+	$nombreresponsable=$_POST['nombreresponsable'];
+	$tecnico=$_POST['tecnico'];
+	$medico=$_POST['medico'];
+	$ayudante=$_POST['ayudante'];
+	$fecha=date("Y-m-d");
+	$hora=date("H:i:s");
+	$values=array(
+					"Nombre"=>"'$nombre'",
+					"CantidadJugadores"=>"$cantidadjugadores",
+					"CodCategoria"=>"$categoria",
+					"NombreResponsable"=>"'$nombreresponsable'",
+					"CodTecnico"=>"$tecnico",
+					"CodMedico"=>"$medico",
+					"CodAyudante"=>"$ayudante",
+			);
+	$club->actualizarClub($values,$cod);
+	header("Location:../");
+}
+?>

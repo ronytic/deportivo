@@ -1,0 +1,30 @@
+<?php
+include_once("../../login/check.php");
+if(!empty($_POST)){
+	include_once("../../class/medico.php");
+	$medico=new  medico;
+	$nombres=$_POST['nombres'];
+	$paterno=$_POST['paterno'];
+	$materno=$_POST['materno'];
+	$fechaNac=$_POST['fechaNac'];
+	$ci=$_POST['ci'];
+	$direccion=$_POST['direccion'];
+	$cargo=$_POST['cargo'];
+	$fecha=date("Y-m-d");
+	$hora=date("H:i:s");
+	$values=array("CodMedico"=>"NULL",
+					"Nombres"=>"'$nombres'",
+					"Paterno"=>"'$paterno'",
+					"Materno"=>"'$materno'",
+					"FechaNac"=>"'$fechaNac'",
+					"Ci"=>"'$ci'",
+					"Direccion"=>"'$direccion'",
+					"Especialidad"=>"'$cargo'",
+					"FechaRegistro"=>"'$fecha'",
+					"HoraRegistro"=>"'$hora'",
+					"Activo"=>"1",
+			);
+	$medico->insertarMedico($values);
+	header("Location:../../");
+}
+?>

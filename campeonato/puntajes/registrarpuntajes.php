@@ -1,0 +1,37 @@
+<?php
+include_once("../../login/check.php");
+if(!empty($_POST)){
+	include_once("../../class/puntaje.php");
+	$puntajes=new puntaje;
+	$nombre=$_POST['nombre'];
+	$codcategoria=$_POST['CodCategoria'];
+	foreach($_POST['p'] as $puntaje){
+		$CodClub=$puntaje['CodClub'];
+		$pj=$puntaje['pj'];
+		$pts=$puntaje['pts'];
+		$pg=$puntaje['pg'];
+		$pe=$puntaje['pe'];
+		$pp=$puntaje['pp'];
+		$dg=$puntaje['dg'];
+		$fechaR=date("Y-m-d");
+		$horaR=date("H:i:s");
+		$values=array(
+			"CodPuntaje"=>"NULL",
+			"Nombre"=>"'$nombre'",
+			"CodCategoria"=>"'$codcategoria'",
+			"CodClub"=>"$CodClub",
+			"PJ"=>"'$pj'",
+			"PTS"=>"'$pts'",
+			"PG"=>"'$pg'",
+			"PE"=>"$pe",
+			"PP"=>"$pp",
+			"DG"=>"$dg",
+			"FechaRegistro"=>"'$fechaR'",
+			"HoraRegistro"=>"'$horaR'",
+			"Activo"=>"1"
+		);
+		$puntajes->insertarPuntaje($values);
+	}
+	header("Location:../../index.php");
+}
+?>
